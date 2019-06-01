@@ -1,6 +1,5 @@
 from World import World
 world = World()
-world.player.loc = world.locations[0]
 
 def HandleInput(player):
     while True:
@@ -8,28 +7,28 @@ def HandleInput(player):
         userInput = input(">").lower().split()
         for word in userInput:
             if word == "north" or word == "n":
-                if world.player.loc.locNorth == None:
+                if player.loc.locNorth == None:
                     error = True
                 else:
-                    world.player.loc = world.player.loc.locNorth
+                    player.loc = player.loc.locNorth
                     return True 
             if word == "south" or word == "s":
-                if world.player.loc.locSouth == None:
+                if player.loc.locSouth == None:
                     error = True
                 else:
-                    world.player.loc = world.player.loc.locSouth
+                    player.loc = player.loc.locSouth
                     return True
             if word == "west" or word == "w":
-                if world.player.loc.locWest == None:
+                if player.loc.locWest == None:
                     error = True
                 else:
-                    world.player.loc = world.player.loc.locWest
+                    player.loc = player.loc.locWest
                     return True
             if word == "east" or word == "e":
-                if world.player.loc.locEast == None:
+                if player.loc.locEast == None:
                     error = True
                 else:
-                    world.player.loc = world.player.loc.locEast
+                    player.loc = player.loc.locEast
                     return True
             if word == "look" or word == "l":
                 return True
@@ -41,9 +40,12 @@ def HandleInput(player):
         else:
             print("I didn't catch that. Please try again.")
 
-playing = True
-while playing:
-    print()
-    print(world.player.loc.name)
-    print(world.player.loc.desc)
-    playing = HandleInput(world.player)
+def Game(player):
+    playing = True
+    while playing: 
+        print()
+        print(player.loc.name)
+        print(player.loc.desc)
+        playing = HandleInput(player)
+
+Game(world.player)

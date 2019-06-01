@@ -4,3 +4,4 @@ class Player:
         self.minDmg = minDmg
         self.maxDmg = maxDmg
         self.loc = None
+        self.items = None
