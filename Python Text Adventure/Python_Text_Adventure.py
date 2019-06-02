@@ -10,27 +10,39 @@ def clearScreen():
     else:
         system("clear")
 
+def unsplit(splitString):
+    unsplitString = ""
+    if len(splitString) > 1:
+        for word in splitString:
+            unsplitString += word + " "
+    else:
+        unsplitString = splitString[0]
+    return unsplitString
+
 def Look(obj, player):
+    obj = unsplit(obj).lower()
     if not player.items == None:
         for item in player.items:
-            if item.name.lower() == obj.lower():
+            if item.name.lower() == obj:
                 print(item.desc)
                 return True
     if not player.loc.items == None:
         for item in player.loc.items:
-            if item.name.lower() == obj.lower():
+            if item.name.lower() == obj:
                 print(item.desc)
                 return True
-    print("There's no " + obj + " here.")
+    print("There's no " + obj + "here.")
 
 def HandleInput(player):
     error = False
     looking = False 
+    pos = -1
     while True: 
         userInput = input(">").lower().split()
         for word in userInput:
+            pos += 1
             if looking:
-                Look(word, player)
+                Look(userInput[pos:], player)
                 return True
             if word == "north" or word == "n":
                 if player.loc.locNorth == None:
@@ -84,4 +96,4 @@ print("###########################")
 print("#        WELCOME TO       #")
 print("#  PYTHON TEXT ADVENTURE  #")
 print("###########################")
-Game(world.player)
+Game(world.player) 

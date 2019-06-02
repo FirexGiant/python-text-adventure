@@ -30,6 +30,9 @@
     <Compile Include="Player.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Potion.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Python_Text_Adventure.py" />
     <Compile Include="World.py">
       <SubType>Code</SubType>
