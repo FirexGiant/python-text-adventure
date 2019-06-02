@@ -8,7 +8,6 @@ class World:
         self.locations = self.CreateLocations()
         self.player = Player(10, 0, 2)
         self.player.loc = self.locations[0]
-        self.player.items = self.items 
 
     def CreateItems(self):
         # Define items 
@@ -24,6 +23,9 @@ class World:
         loc2 = Location("Location 2", "There is nothing to do here in Location 2.")
         loc3 = Location("Location 3", "There is nothing to do here in Location 3.")
         loc4 = Location("Location 4", "There is nothing to do here in Location 4.")
+
+        # Add items to locations 
+        loc1.items = [self.items[0]]
 
         # Add location connections 
         loc1.locNorth = loc2

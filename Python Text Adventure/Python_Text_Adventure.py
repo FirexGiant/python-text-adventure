@@ -1,11 +1,37 @@
+from os import name
+from os import system 
+
 from World import World
 world = World()
 
+def clearScreen():
+    if name == "nt":
+        system("cls")
+    else:
+        system("clear")
+
+def Look(obj, player):
+    if not player.items == None:
+        for item in player.items:
+            if item.name.lower() == obj.lower():
+                print(item.desc)
+                return True
+    if not player.loc.items == None:
+        for item in player.loc.items:
+            if item.name.lower() == obj.lower():
+                print(item.desc)
+                return True
+    print("There's no " + obj + " here.")
+
 def HandleInput(player):
-    while True:
-        error = False
+    error = False
+    looking = False 
+    while True: 
         userInput = input(">").lower().split()
         for word in userInput:
+            if looking:
+                Look(word, player)
+                return True
             if word == "north" or word == "n":
                 if player.loc.locNorth == None:
                     error = True
@@ -31,12 +57,18 @@ def HandleInput(player):
                     player.loc = player.loc.locEast
                     return True
             if word == "look" or word == "l":
+                looking = True
+            if word == "clear" or word == "c":
+                clearScreen()
                 return True
-            if word == "quit" or word == "q":
+            if word == "exit" or word == "quit" or word == "q": # There's no 'e' because 'e' is already being used for moving east
                 return False
         if error:
             print("You cannot go that way!")
             error = False
+        elif looking:
+            print(player.loc.desc)
+            return True
         else:
             print("I didn't catch that. Please try again.")
 
