@@ -80,4 +80,8 @@ def Game(player):
         print(player.loc.desc)
         playing = HandleInput(player)
 
+print("###########################")
+print("#        WELCOME TO       #")
+print("#  PYTHON TEXT ADVENTURE  #")
+print("###########################")
 Game(world.player)
