@@ -9,7 +9,7 @@ class World:
         self.potions = self.CreatePotions()
         self.locations = self.CreateLocations()
         self.player = Player(10, 0, 2)
-        self.player.loc = self.locations[0]
+        self.player.currentLocation = self.locations[0]
 
     def CreateItems(self):
         # Define items 
@@ -40,15 +40,15 @@ class World:
         loc1.items = [self.items[0]]
 
         # Add location connections 
-        loc1.locNorth = loc2
-        loc1.locSouth = loc4
-        loc1.locEast = loc3
+        loc1.LocationNorth = loc2
+        loc1.LocationSouth = loc4
+        loc1.LocationEast = loc3
 
-        loc2.locSouth = loc1
+        loc2.LocationSouth = loc1
 
-        loc3.locWest = loc1
+        loc3.LocationWest = loc1
 
-        loc4.locNorth = loc1
+        loc4.LocationNorth = loc1
 
         # Add locations to locations list 
         locs = [loc1, loc2, loc3, loc4]

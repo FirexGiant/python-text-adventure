@@ -12,82 +12,75 @@ def clearScreen():
 
 def Look(itemToLook, player):
     # return True is just to break out of the function so it doesn't print the item desc and the error message
-    if not player.items == None:
-        for item in player.items:
-            itemName = item.name.lower().split()
-            if itemName == itemToLook:
-                print(item.desc)
-                return True
-    if not player.loc.items == None:
-        for item in player.loc.items:
-            itemName = item.name.lower().split()
-            if itemName == itemToLook:
-                print(item.desc)
-                return True
-    print("I don't see that anywhere.")
-
+    if itemToLook == ['look'] or itemToLook == ['l']:
+        print(player.currentLocation.desc)
+        return True
+    else:
+        try:
+            itemToLook.remove('look')
+        except:
+            itemToLook.remove('l')
+        if player.HasItems():
+            for item in player.items:
+                itemName = item.name.lower().split()
+                if itemName == itemToLook:
+                    print(item.desc)
+                    return True
+        if player.currentLocation.HasItems():
+            for item in player.currentLocation.items:
+                itemName = item.name.lower().split()
+                if itemName == itemToLook:
+                    print(item.desc)
+                    return True
+        print("I don't see that anywhere.")
 
 def HandleInput(player):
-    error = False
-    looking = False 
-    pos = -1
+    locationExists = True
     while True: 
         userInput = input(">").lower().split()
         for word in userInput:
-            pos += 1
-            if looking:
-                try:
-                    userInput.remove('look')
-                except:
-                    userInput.remove('l')
-                Look(userInput, player)
-                return True
             if word == "north" or word == "n":
-                if player.loc.locNorth == None:
-                    error = True
+                if player.currentLocation.LocationNorth == None:
+                    locationExists = False 
                 else:
-                    player.loc = player.loc.locNorth
+                    player.currentLocation = player.currentLocation.LocationNorth
                     return True 
             if word == "south" or word == "s":
-                if player.loc.locSouth == None:
-                    error = True
+                if player.currentLocation.LocationSouth == None:
+                    locationExists = False
                 else:
-                    player.loc = player.loc.locSouth
+                    player.currentLocation = player.currentLocation.LocationSouth
                     return True
             if word == "west" or word == "w":
-                if player.loc.locWest == None:
-                    error = True
+                if player.currentLocation.LocationWest == None:
+                    locationExists = False
                 else:
-                    player.loc = player.loc.locWest
+                    player.currentLocation = player.currentLocation.LocationWest
                     return True
             if word == "east" or word == "e":
-                if player.loc.locEast == None:
-                    error = True
+                if player.currentLocation.LocationEast == None:
+                    locationExists = False
                 else:
-                    player.loc = player.loc.locEast
+                    player.currentLocation = player.currentLocation.LocationEast
                     return True
             if word == "look" or word == "l":
-                looking = True
+                Look(userInput, player)
+                return True
             if word == "clear" or word == "c":
                 clearScreen()
                 return True
             if word == "exit" or word == "quit" or word == "q": # There's no 'e' because 'e' is already being used for moving east
                 return False
-        if error:
+        if not locationExists:
             print("You cannot go that way!")
-            error = False
-        elif looking:
-            print(player.loc.desc)
-            return True
+            locationExists = True
         else:
             print("I didn't catch that. Please try again.")
 
 def Game(player):
     playing = True
     while playing: 
-        print()
-        print(player.loc.name)
-        print(player.loc.desc)
+        player.PrintLocation()
         playing = HandleInput(player)
 
 print("###########################")

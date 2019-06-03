@@ -3,7 +3,13 @@ class Location:
         self.name = name
         self.desc = desc
         self.items = None 
-        self.locNorth = None
-        self.locSouth = None
-        self.locWest = None
-        self.locEast = None 
+        self.LocationNorth = None
+        self.LocationSouth = None
+        self.LocationWest = None
+        self.LocationEast = None 
+
+    def HasItems(self):
+        if self.items == None:
+            return False
+        else:
+            return True

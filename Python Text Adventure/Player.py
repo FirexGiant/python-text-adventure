@@ -3,5 +3,16 @@ class Player:
         self.health = health
         self.minDmg = minDmg
         self.maxDmg = maxDmg
-        self.loc = None
+        self.currentLocation = None
         self.items = None
+
+    def PrintLocation(self):
+        print()
+        print(self.currentLocation.name)
+        print(self.currentLocation.desc)
+
+    def HasItems(self):
+        if self.items == None:
+            return False
+        else:
+            return True 
