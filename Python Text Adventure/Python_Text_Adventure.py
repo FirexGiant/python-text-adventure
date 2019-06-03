@@ -10,28 +10,22 @@ def clearScreen():
     else:
         system("clear")
 
-def unsplit(splitString):
-    unsplitString = ""
-    if len(splitString) > 1:
-        for word in splitString:
-            unsplitString += word + " "
-    else:
-        unsplitString = splitString[0]
-    return unsplitString
-
-def Look(obj, player):
-    obj = unsplit(obj).lower()
+def Look(itemToLook, player):
+    # return True is just to break out of the function so it doesn't print the item desc and the error message
     if not player.items == None:
         for item in player.items:
-            if item.name.lower() == obj:
+            itemName = item.name.lower().split()
+            if itemName == itemToLook:
                 print(item.desc)
                 return True
     if not player.loc.items == None:
         for item in player.loc.items:
-            if item.name.lower() == obj:
+            itemName = item.name.lower().split()
+            if itemName == itemToLook:
                 print(item.desc)
                 return True
-    print("There's no " + obj + "here.")
+    print("I don't see that anywhere.")
+
 
 def HandleInput(player):
     error = False
@@ -42,7 +36,11 @@ def HandleInput(player):
         for word in userInput:
             pos += 1
             if looking:
-                Look(userInput[pos:], player)
+                try:
+                    userInput.remove('look')
+                except:
+                    userInput.remove('l')
+                Look(userInput, player)
                 return True
             if word == "north" or word == "n":
                 if player.loc.locNorth == None:
