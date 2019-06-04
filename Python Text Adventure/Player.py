@@ -17,6 +17,7 @@ class Player:
         else:
             return True 
 
+    # Check for locations
     def HasLocationNorth(self):
         if self.currentLocation.LocationNorth == None:
             return False
@@ -40,3 +41,16 @@ class Player:
             return False
         else:
             return True 
+
+    # Move to locations
+    def MoveNorth(self):
+        self.currentLocation = self.currentLocation.LocationNorth
+
+    def MoveSouth(self):
+        self.currentLocation = self.currentLocation.LocationSouth
+
+    def MoveWest(self):
+        self.currentLocation = self.currentLocation.LocationWest
+
+    def MoveEast(self):
+        self.currentLocation = self.currentLocation.LocationEast

@@ -41,25 +41,25 @@ def HandleInput(player):
         for word in userInput:
             if word == "north" or word == "n":
                 if player.HasLocationNorth():
-                    player.currentLocation = player.currentLocation.LocationNorth
+                    player.MoveNorth()
                     return True 
                 else:
                     locationExists = False 
             if word == "south" or word == "s":
                 if player.HasLocationSouth():
-                    player.currentLocation = player.currentLocation.LocationSouth
+                    player.MoveSouth()
                     return True
                 else:
                     locationExists = False
             if word == "west" or word == "w":
                 if player.HasLocationWest():
-                    player.currentLocation = player.currentLocation.LocationWest
+                    player.MoveWest()
                     return True
                 else:
                     locationExists = False
             if word == "east" or word == "e":
                 if player.HasLocationEast():
-                    player.currentLocation = player.currentLocation.LocationEast
+                    player.MoveEast()
                     return True
                 else:
                     locationExists = False
