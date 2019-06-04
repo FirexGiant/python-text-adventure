@@ -40,29 +40,29 @@ def HandleInput(player):
         userInput = input(">").lower().split()
         for word in userInput:
             if word == "north" or word == "n":
-                if player.currentLocation.LocationNorth == None:
-                    locationExists = False 
-                else:
+                if player.HasLocationNorth():
                     player.currentLocation = player.currentLocation.LocationNorth
                     return True 
-            if word == "south" or word == "s":
-                if player.currentLocation.LocationSouth == None:
-                    locationExists = False
                 else:
+                    locationExists = False 
+            if word == "south" or word == "s":
+                if player.HasLocationSouth():
                     player.currentLocation = player.currentLocation.LocationSouth
                     return True
-            if word == "west" or word == "w":
-                if player.currentLocation.LocationWest == None:
-                    locationExists = False
                 else:
+                    locationExists = False
+            if word == "west" or word == "w":
+                if player.HasLocationWest():
                     player.currentLocation = player.currentLocation.LocationWest
                     return True
-            if word == "east" or word == "e":
-                if player.currentLocation.LocationEast == None:
-                    locationExists = False
                 else:
+                    locationExists = False
+            if word == "east" or word == "e":
+                if player.HasLocationEast():
                     player.currentLocation = player.currentLocation.LocationEast
                     return True
+                else:
+                    locationExists = False
             if word == "look" or word == "l":
                 Look(userInput, player)
                 return True

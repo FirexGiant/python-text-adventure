@@ -16,3 +16,27 @@ class Player:
             return False
         else:
             return True 
+
+    def HasLocationNorth(self):
+        if self.currentLocation.LocationNorth == None:
+            return False
+        else:
+            return True 
+
+    def HasLocationSouth(self):
+        if self.currentLocation.LocationSouth == None:
+            return False
+        else:
+            return True 
+
+    def HasLocationWest(self): 
+        if self.currentLocation.LocationWest == None:
+            return False
+        else:
+            return True 
+
+    def HasLocationEast(self):
+        if self.currentLocation.LocationEast == None:
+            return False
+        else:
+            return True 
