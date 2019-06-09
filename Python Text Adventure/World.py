@@ -1,12 +1,10 @@
 from Location import Location
 from Player import Player
 from Item import Item
-from Potion import Potion
 
 class World:
     def __init__(self):
         self.items = self.CreateItems()
-        self.potions = self.CreatePotions()
         self.locations = self.CreateLocations()
         self.player = Player(10, 0, 2)
         self.player.currentLocation = self.locations[0]
@@ -18,16 +16,6 @@ class World:
         # Add items to items list 
         items = [banana]
         return items 
-
-    def CreatePotions(self):
-        # Define potions
-        smallPotion = Potion("Small Healing Potion", "A strange red liquid in a small glass bottle. You know like in the movies.", 2)
-
-        # Add potions to potions list 
-        potions = [smallPotion]
-        # Make constants for potions 
-        self.SMALL_HEALING_POTION = 0
-        return potions 
 
     def CreateLocations(self):
         # Define locations 
