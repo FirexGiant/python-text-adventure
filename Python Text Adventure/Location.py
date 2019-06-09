@@ -3,6 +3,7 @@ class Location:
         self.name = name
         self.desc = desc
         self.items = []
+        self.food = []
         self.LocationNorth = None
         self.LocationSouth = None
         self.LocationWest = None
@@ -19,3 +20,15 @@ class Location:
 
     def RemoveItem(self, item):
         self.items.remove(item)
+
+    def HasFood(self):
+        if self.food == []:
+            return False
+        else:
+            return True
+        
+    def AddFood(self, food):
+        self.food.append(food)
+
+    def RemoveFood(self, food):
+        self.food.remove(food)

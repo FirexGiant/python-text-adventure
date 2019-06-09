@@ -1,21 +1,31 @@
 from Location import Location
 from Player import Player
 from Item import Item
+from Food import Food
 
 class World:
     def __init__(self):
         self.items = self.CreateItems()
+        self.food = self.CreateFood()
         self.locations = self.CreateLocations()
         self.player = Player(10, 0, 2)
         self.player.currentLocation = self.locations[0]
 
     def CreateItems(self):
         # Define items 
-        banana = Item("Banana", "It's just a normal banana. Very tasty!")
+        paper = Item("Paper", "It's a piece of paper that reads, \"Hello adventurer! Have you tried the banana?\"")
 
         # Add items to items list 
-        items = [banana]
+        items = [paper]
         return items 
+
+    def CreateFood(self):
+        # Define foods
+        banana = Food("Banana", "It's just a normal banana. Very tasty!", 2)
+
+        # Add foods to foods list 
+        foods = [banana]
+        return foods
 
     def CreateLocations(self):
         # Define locations 
@@ -25,7 +35,7 @@ class World:
         loc4 = Location("Location 4", "There is nothing to do here in Location 4.")
 
         # Add items to locations 
-        loc1.items = [self.items[0]]
+        loc1.food = [self.food[0]]
 
         # Add location connections 
         loc1.LocationNorth = loc2

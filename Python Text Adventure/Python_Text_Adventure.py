@@ -27,12 +27,26 @@ def Look(userInput, player):
                     print("You look through your items.")
                     print(item.desc)
                     return True
+        if player.HasFood():
+            for food in player.food:
+                foodName = food.name.lower().split()
+                if foodName == userInput:
+                    print("You look through your food.")
+                    print(food.desc)
+                    return True
         if player.currentLocation.HasItems():
             for item in player.currentLocation.items:
                 itemName = item.name.lower().split()
                 if itemName == userInput:
                     print("You look around the area.")
                     print(item.desc)
+                    return True
+        if player.currentLocation.HasFood():
+            for food in player.currentLocation.food:
+                foodName = food.name.lower().split()
+                if foodName == userInput:
+                    print("You look around the area.")
+                    print(food.desc)
                     return True
         print("I don't see that anywhere.")
 
@@ -48,6 +62,13 @@ def Take(userInput, player):
                 player.AddItem(item)
                 player.currentLocation.RemoveItem(item)
                 return True # This is just here to break out of the method
+    if player.currentLocation.HasFood():
+        for food in player.currentLocation.food:
+            foodName = food.name.lower().split()
+            if foodName == userInput:
+                player.AddFood(food)
+                player.currentLocation.RemoveFood(food)
+                return True # This is just here to break out of the method
     print("I don't see that anywhere.")
 
 def Drop(userInput, player):
@@ -59,7 +80,32 @@ def Drop(userInput, player):
                 player.RemoveItem(item)
                 player.currentLocation.AddItem(item)
                 return True # This is just here to break out of the method 
+    if player.HasFood():
+        for food in player.food:
+            foodName = food.name.lower().split()
+            if foodName == userInput:
+                player.RemoveFood(food)
+                player.currentLocation.AddFood(food)
+                return True # This is just here to break out of the method 
     print("You don't have that.")
+
+def Eat(userInput, player):
+    userInput.remove('eat')
+    if player.HasFood():
+        for food in player.food:
+            foodName = food.name.lower().split()
+            if foodName == userInput:
+                player.Heal(food.healingAmount)
+                player.RemoveFood(food)
+                return True # This is just here to break out of the method 
+    if player.currentLocation.HasFood():
+        for food in player.currentLocation.food:
+            foodName = food.name.lower().split()
+            if foodName == userInput:
+                player.Heal(food.healingAmount)
+                player.currentLocation.RemoveFood(food)
+                return True # This is just here to break out of the method  
+    print("I don't see that anywhere.")
 
 def HandleInput(player):
     locationExists = True
@@ -98,6 +144,9 @@ def HandleInput(player):
                 return True
             elif word == "drop":
                 Drop(userInput, player)
+                return True 
+            elif word == "eat":
+                Eat(userInput, player)
                 return True 
             elif word == "clear" or word == "c":
                 clearScreen()

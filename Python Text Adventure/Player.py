@@ -5,14 +5,19 @@ class Player:
         self.maxDmg = maxDmg
         self.currentLocation = None
         self.items = []
+        self.food = []
 
     def PrintLocation(self):
         print()
         print(self.currentLocation.name)
         print(self.currentLocation.desc)
 
+    def Heal(self, amountToHeal):
+        self.health += amountToHeal
+        print("Your health went up by "+ str(amountToHeal) + "!")
+
     def HasItems(self):
-        if self.items == None:
+        if self.items == []:
             return False
         else:
             return True 
@@ -24,6 +29,20 @@ class Player:
     def RemoveItem(self, item):
         self.items.remove(item)
         print("You dropped the " + item.name + ".")
+
+    def HasFood(self):
+        if self.food == []:
+            return False
+        else:
+            return True
+        
+    def AddFood(self, food):
+        self.food.append(food)
+        print(food.name + " added to your food!")
+
+    def RemoveFood(self, food):
+        self.food.remove(food)
+        print("You dropped the " + food.name + ".")
 
     # Check for locations
     def HasLocationNorth(self):
