@@ -4,7 +4,7 @@ class Player:
         self.minDmg = minDmg
         self.maxDmg = maxDmg
         self.currentLocation = None
-        self.items = None
+        self.items = []
 
     def PrintLocation(self):
         print()
@@ -16,6 +16,14 @@ class Player:
             return False
         else:
             return True 
+
+    def AddItem(self, item):
+        self.items.append(item)
+        print(item.name + " added to your items!")
+
+    def RemoveItem(self, item):
+        self.items.remove(item)
+        print("You dropped the " + item.name + ".")
 
     # Check for locations
     def HasLocationNorth(self):

@@ -2,7 +2,7 @@ class Location:
     def __init__(self, name, desc):
         self.name = name
         self.desc = desc
-        self.items = None 
+        self.items = []
         self.LocationNorth = None
         self.LocationSouth = None
         self.LocationWest = None
@@ -13,3 +13,9 @@ class Location:
             return False
         else:
             return True
+
+    def AddItem(self, item):
+        self.items.append(item)
+
+    def RemoveItem(self, item):
+        self.items.remove(item)
