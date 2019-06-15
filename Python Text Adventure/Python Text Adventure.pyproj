@@ -24,6 +24,9 @@
     <Compile Include="Food.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Inventory.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Item.py">
       <SubType>Code</SubType>
     </Compile>
