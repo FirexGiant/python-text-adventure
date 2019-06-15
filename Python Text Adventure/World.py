@@ -6,49 +6,16 @@ from Inventory import Inventory
 
 class World:
     def __init__(self):
-        self.items = self.CreateItems()
-        self.food = self.CreateFood()
-        self.locations = self.CreateLocations()
-        self.player = Player(10, 0, 2)
-        self.player.currentLocation = self.locations[0]
-
-    def CreateItems(self):
-        # Define items 
-        paper = Item("Paper", "It's a piece of paper that reads, \"Hello adventurer! Have you tried the banana?\"")
-
-        # Add items to items list 
-        items = [paper]
-        return items 
-
-    def CreateFood(self):
-        # Define foods
-        banana = Food("Banana", "It's just a normal banana. Very tasty!", 2)
-
-        # Add foods to foods list 
-        foods = [banana]
-        return foods
+        self.CreateLocations()
 
     def CreateLocations(self):
-        # Define locations 
-        loc1 = Location("Location 1", "There is nothing to do here in Location 1.")
-        loc2 = Location("Location 2", "There is nothing to do here in Location 2.")
-        loc3 = Location("Location 3", "There is nothing to do here in Location 3.")
-        loc4 = Location("Location 4", "There is nothing to do here in Location 4.")
+        self.locations = [
+            Location(1, "Circle of Trees", "Light pierces your eyes as you struggle to force them open. \nYou lie on dirt ground in the middle of a circle of trees. You remember nothing. \nBeside you lays a wooden sword. You roll over and grab the sword. \nYou then stab the sword into the ground and slowly lift yourself up. \nYou slip the sword into the belt that is around your waist. \nThere is a dirt path to the north that leads into the darkness of the woods.", locationIdNorth = 2),
+            Location(2, "Dark Path", "You walk along a dark path. You cannot see much, but you can tell that the path leads north.", locationIdNorth = 3),
+            Location(3, "Intersection", "As you walk you come across an intersection. It is sunny now. You see that there are paths leading north, south, west, and east.", locationIdSouth = 2)
+        ]
 
-        # Add items to locations 
-        loc1.food = [self.food[0]]
-
-        # Add location connections 
-        loc1.LocationNorth = loc2
-        loc1.LocationSouth = loc4
-        loc1.LocationEast = loc3
-
-        loc2.LocationSouth = loc1
-
-        loc3.LocationWest = loc1
-
-        loc4.LocationNorth = loc1
-
-        # Add locations to locations list 
-        locs = [loc1, loc2, loc3, loc4]
-        return locs 
+'''
+    "Paper", "It's a piece of paper that reads, \"Hello adventurer! Have you tried the banana?\""
+    "Banana", "It's just a normal banana. Very tasty!"
+'''
