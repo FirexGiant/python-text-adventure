@@ -2,6 +2,7 @@ from Location import Location
 from Player import Player
 from Item import Item
 from Food import Food
+from Inventory import Inventory
 
 class World:
     def __init__(self):
