@@ -6,7 +6,19 @@ from Inventory import Inventory
 
 class World:
     def __init__(self):
+        self.CreateInventory()
         self.CreateLocations()
+
+    def CreateInventory(self):
+        self.inventory = Inventory()
+        inventory.items = [
+            Item(1, "Paper", "It's a piece of paper that reads, \"Hello adventurer! Have you tried the banana?\""),
+            Item(2, "Cup", "It is a cup. You know, like the ones from the movies.")
+        ]
+        inventory.food = [
+            Food(1, "Banana", "It's just a normal banana. Very tasty!", 2),
+            Food(2, "Apple", "It's just like a banana, except it's not.", 1)
+        ]
 
     def CreateLocations(self):
         self.locations = [
@@ -14,8 +26,3 @@ class World:
             Location(2, "Dark Path", "You walk along a dark path. You cannot see much, but you can tell that the path leads north.", locationIdNorth = 3),
             Location(3, "Intersection", "As you walk you come across an intersection. It is sunny now. You see that there are paths leading north, south, west, and east.", locationIdSouth = 2)
         ]
-
-'''
-    "Paper", "It's a piece of paper that reads, \"Hello adventurer! Have you tried the banana?\""
-    "Banana", "It's just a normal banana. Very tasty!"
-'''
