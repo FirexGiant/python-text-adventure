@@ -37,6 +37,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Python_Text_Adventure.py" />
+    <Compile Include="Typeout.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="World.py">
       <SubType>Code</SubType>
     </Compile>
