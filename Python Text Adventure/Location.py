@@ -5,7 +5,7 @@ class Location:
         self.id = id
         self.name = name
         self.desc = desc
-        self.pauseOnPeriod = pauseOnPeriod
+        self.pauseOnPeriod = pauseOnPeriod # Determines whether or not to pause on periods while running typeout() method for this location's desc
         self.altDescs = altDescs
         self.inventory = Inventory()
         self.inventory.items = items

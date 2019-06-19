@@ -17,35 +17,19 @@ def HandleInput(player):
         # Returns true if player wants to continue playing, false if player wants to quit 
         userInput = input(">").lower()
         if "north" in userInput:
-            if player.HasLocationNorth():
-                player.currentLocation = world.GetLocation(player.currentLocation.locationIdNorth)
-                done = True
-            else:
-                print("You cannot go that way!")
+            done = world.MovePlayerNorth()
             if done:
                 return True 
         elif "south" in userInput:
-            if player.HasLocationSouth():
-                player.currentLocation = world.GetLocation(player.currentLocation.locationIdSouth)
-                done = True
-            else:
-                print("You cannot go that way!")
+            done = world.MovePlayerSouth()
             if done:
                 return True
         elif "west" in userInput:
-            if player.HasLocationWest():
-                player.currentLocation = world.GetLocation(player.currentLocation.locationIdWest)
-                done = True
-            else:
-                print("You cannot go that way!")
+            done = world.MovePlayerWest()
             if done:
                 return True
         elif "east" in userInput:
-            if player.HasLocationEast():
-                player.currentLocation = world.GetLocation(player.currentLocation.locationIdEast)
-                done = True
-            else:
-                print("You cannot go that way!")
+            done = world.MovePlayerEast()
             if done:
                 return True
         elif "clear" in userInput:
@@ -61,11 +45,7 @@ def HandleInput(player):
 def Game(player):
     playing = True 
     while playing:
-        # Print out player's current location info
-        print()
-        print(player.currentLocation.name)
-        typeout(player.currentLocation.desc, pauseOnPeriod = player.currentLocation.pauseOnPeriod)
-        # Handle player input
+        player.PrintLocation()
         playing = HandleInput(player)
 
 Game(world.player)

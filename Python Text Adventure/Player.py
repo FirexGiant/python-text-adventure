@@ -1,3 +1,4 @@
+from Typeout import typeout
 from Inventory import Inventory
 
 class Player:
@@ -9,6 +10,12 @@ class Player:
         self.inventory = Inventory()
         self.inventory.items = items
         self.inventory.food = food 
+
+    def PrintLocation(self):
+        print()
+        print(self.currentLocation.name)
+        print()
+        typeout(self.currentLocation.desc, pauseOnPeriod = self.currentLocation.pauseOnPeriod)
 
     # Check for locations 
     def HasLocationNorth(self):

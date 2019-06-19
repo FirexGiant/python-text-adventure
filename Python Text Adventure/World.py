@@ -10,6 +10,7 @@ class World:
         self.CreateLocations()
         self.CreatePlayer()
 
+    # Creation methods 
     def CreateInventory(self):
         self.inventory = Inventory()
         self.inventory.items = [
@@ -31,6 +32,7 @@ class World:
     def CreatePlayer(self):
         self.player = Player(10, 0, 2, self.GetLocation(1))
 
+    # Task methods
     def GetLocation(self, locationId):
         if self.locations == []:
             print("GetLocation() ERROR: There are no locations.")
@@ -39,3 +41,36 @@ class World:
                 if location.id == locationId:
                     return location 
             print("GetLocation() ERROR: Location with id '{0}' not found.".format(str(locationId)))
+
+    # Player movement 
+    def MovePlayerNorth(self):
+        if self.player.HasLocationNorth():
+            self.player.currentLocation = self.GetLocation(self.player.currentLocation.locationIdNorth)
+            return True 
+        else: 
+            print("You cannot go north.")
+            return False
+
+    def MovePlayerSouth(self):
+        if self.player.HasLocationSouth():
+            self.player.currentLocation = self.GetLocation(self.player.currentLocation.locationIdSouth)
+            return True 
+        else:
+            print("You cannot go south.")
+            return False
+
+    def MovePlayerWest(self):
+        if self.player.HasLocationWest():
+            self.player.currentLocation = self.GetLocation(self.player.currentLocation.locationIdWest)
+            return True
+        else:
+            print("You cannot go west.")
+            return False
+
+    def MovePlayerEast(self):
+        if self.player.HasLocationEast():
+            self.player.currentLocation = self.GetLocation(self.player.currentLocation.locationIdEast)
+            return True
+        else:
+            print("You cannot go east.")
+            return False
