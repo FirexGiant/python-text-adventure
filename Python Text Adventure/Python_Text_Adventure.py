@@ -77,6 +77,22 @@ def Take(userInput, player):
     print("I don't see that anywhere.")
     return
 
+def Eat(userInput, player):
+    if player.inventory.HasFood():
+        for food in player.inventory.food:
+            if food.name.lower() in userInput:
+                food.Heal(player)
+                player.inventory.RemoveFood(food)
+                return
+    if player.currentLocation.inventory.HasFood():
+        for food in player.currentLocation.inventory.food:
+            if food.name.lower() in userInput:
+                food.Heal(player)
+                player.currentLocation.inventory.RemoveFood(food)
+                return
+    print("I don't see that anywhere.")
+    return
+
 def HandleInput(player): 
     while True:
         done = False 
@@ -102,6 +118,8 @@ def HandleInput(player):
             Look(userInput, player)
         elif "take" in userInput:
             Take(userInput, player)
+        elif "eat" in userInput:
+            Eat(userInput, player)
         elif "clear" in userInput:
             clearScreen()
             return True

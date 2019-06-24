@@ -2,8 +2,11 @@ from Typeout import typeout
 from Inventory import Inventory
 
 class Player:
-    def __init__(self, health, minDmg, maxDmg, currentLocation = None, items = [], food = []):
+    def __init__(self, name, desc, health, minDmg, maxDmg, currentLocation = None, items = [], food = []):
+        self.name = name
+        self.desc = desc
         self.health = health
+        self.maxHealth = maxHealth
         self.minDmg = minDmg
         self.maxDmg = maxDmg
         self.currentLocation = currentLocation
