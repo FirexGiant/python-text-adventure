@@ -15,7 +15,7 @@ class Player:
         print()
         print(self.currentLocation.name)
         print()
-        typeout(self.currentLocation.desc, pauseOnPeriod = self.currentLocation.pauseOnPeriod)
+        typeout(self.currentLocation.desc)
 
     # Check for locations 
     def HasLocationNorth(self):

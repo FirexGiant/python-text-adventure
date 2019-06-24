@@ -11,6 +11,72 @@ from Typeout import typeout
 from World import World
 world = World()
 
+def Look(userInput, player):
+    if player.inventory.HasItems():
+        for item in player.inventory.items:
+            if item.name.lower() in userinput:
+                typeout("You look through your items...")
+                typeout(item.desc)
+                return 
+    if player.inventory.HasFood():
+        for food in player.inventory.food:
+            if food.name.lower() in userInput:
+                typeout("You look through your food...")
+                typeout(food.desc)
+                print("Heals for {0}.".format(str(food.healingAmount)))
+                return 
+    if player.currentLocation.inventory.HasItems():
+        for item in player.currentLocation.inventory.items:
+            if item.name.lower() in userInput:
+                typeout("You look around...")
+                typeout(item.desc)
+                return 
+    if player.currentLocation.inventory.HasFood():
+        for food in player.currentLocation.inventory.food:
+            if food.name.lower() in userInput:
+                typeout("You look around...")
+                typeout(food.desc)
+                print("Heals for {0}.".format(str(food.healingAmount)))
+                return 
+    if userInput.strip() == "look":
+        if player.currentLocation.lookDesc == None:
+            typeout(player.currentLocation.desc)
+        else:
+            typeout(player.currentLocation.lookDesc)
+        return 
+    if "around" in userInput:
+        if player.currentLocation.lookDesc == None:
+            typeout(player.currentLocation.desc)
+        else:
+            typeout(player.currentLocation.lookDesc)
+        return 
+    if "here" in userInput:
+        if player.currentLocation.lookDesc == None:
+            typeout(player.currentLocation.desc)
+        else:
+            typeout(player.currentLocation.lookDesc)
+        return 
+    print("I don't see that anywhere.")
+    return 
+
+def Take(userInput, player):
+    if player.currentLocation.inventory.HasItems():
+        for item in player.currentLocation.inventory.items:
+            if item.name.lower() in userInput:
+                player.inventory.AddItem(item)
+                player.currentLocation.inventory.RemoveItem(item)
+                print("{0} added to items.".format(item.name))
+                return
+    if player.currentLocation.inventory.HasFood():
+        for food in player.currentLocation.inventory.food:
+            if food.name.lower() in userInput:
+                player.inventory.AddFood(food)
+                player.currentLocation.inventory.RemoveFood(food)
+                print("{0} added to food.".format(food.name))
+                return
+    print("I don't see that anywhere.")
+    return
+
 def HandleInput(player): 
     while True:
         done = False 
@@ -32,6 +98,10 @@ def HandleInput(player):
             done = world.MovePlayerEast()
             if done:
                 return True
+        elif "look" in userInput:
+            Look(userInput, player)
+        elif "take" in userInput:
+            Take(userInput, player)
         elif "clear" in userInput:
             clearScreen()
             return True
