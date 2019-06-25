@@ -4,7 +4,7 @@ from keyboard import wait
 
 marks = (".", "!", "?")
 
-def typeout(string, delay = 0.035, newline = True, pauseDelay = 1.35):
+def typeout(string, delay = 0.05, newline = True, pauseDelay = 1):
     for char in string:
         print(char, end='', flush=True)
         if is_pressed('space'):

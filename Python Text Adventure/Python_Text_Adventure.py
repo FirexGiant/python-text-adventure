@@ -14,27 +14,27 @@ world = World()
 def Look(userInput, player):
     if player.inventory.HasItems():
         for item in player.inventory.items:
-            if item.name.lower() in userinput:
-                typeout("You look through your items...")
+            if item.name.lower() in userInput:
+                typeout("You look through your items...", pauseDelay = 0.50)
                 typeout(item.desc)
                 return 
     if player.inventory.HasFood():
         for food in player.inventory.food:
             if food.name.lower() in userInput:
-                typeout("You look through your food...")
+                typeout("You look through your food...", pauseDelay = 0.50)
                 typeout(food.desc)
                 print("Heals for {0}.".format(str(food.healingAmount)))
                 return 
     if player.currentLocation.inventory.HasItems():
         for item in player.currentLocation.inventory.items:
             if item.name.lower() in userInput:
-                typeout("You look around...")
+                typeout("You look around...", pauseDelay = 0.50)
                 typeout(item.desc)
                 return 
     if player.currentLocation.inventory.HasFood():
         for food in player.currentLocation.inventory.food:
             if food.name.lower() in userInput:
-                typeout("You look around...")
+                typeout("You look around...", pauseDelay = 0.50)
                 typeout(food.desc)
                 print("Heals for {0}.".format(str(food.healingAmount)))
                 return 
@@ -56,6 +56,12 @@ def Look(userInput, player):
         else:
             typeout(player.currentLocation.lookDesc)
         return 
+    if "player" in userInput:
+        player.PrintStats()
+        return
+    if "myself" in userInput:
+        player.PrintStats()
+        return
     print("I don't see that anywhere.")
     return 
 
@@ -78,12 +84,22 @@ def Take(userInput, player):
     return
 
 def Eat(userInput, player):
+    if player.inventory.HasItems():
+        for item in player.inventory.items:
+            if item.name.lower() in userInput:
+                typeout("You can't eat that!")
+                return
     if player.inventory.HasFood():
         for food in player.inventory.food:
             if food.name.lower() in userInput:
                 food.Heal(player)
                 player.inventory.RemoveFood(food)
                 return
+    if player.currentLocation.inventory.HasItems():
+        for item in player.currentLocation.inventory.items:
+            if item.name.lower() in userInput:
+                typeout("You can't eat that!")
+                return 
     if player.currentLocation.inventory.HasFood():
         for food in player.currentLocation.inventory.food:
             if food.name.lower() in userInput:
